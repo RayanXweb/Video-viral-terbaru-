@@ -3,126 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Gallery UI - Fixed URL</title>
+    <title>Koleksi VVIP Modern</title>
     <style>
-        /* Base Styling */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-color: #f0f7ff;
+            --card-bg: #4a6fff;
+            --card-hover: #3451c7;
+            --text-white: #ffffff;
+            --overlay-bg: rgba(255, 255, 255, 0.9);
+        }
+
         body {
-            background-color: #00008b; /* Biru Tua sesuai Screenshot */
-            font-family: Arial, sans-serif;
-            color: white;
-            padding: 10px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Header Info */
-        .header-ui { text-align: center; margin-bottom: 20px; }
-        .results-info { font-size: 20px; font-weight: bold; color: #ffff00; margin-bottom: 10px; }
-        .badges { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; }
-        .badge { padding: 4px 12px; border-radius: 3px; font-weight: bold; font-size: 12px; }
-        .badge-std { background: #add8e6; color: #00008b; }
-        .badge-gld { background: #ffd700; color: #000; }
-
-        /* Pagination */
-        .pagination {
-            display: flex; justify-content: center; flex-wrap: wrap;
-            gap: 5px; margin-bottom: 25px;
-        }
-        .pg-btn {
-            width: 35px; height: 35px; display: flex; align-items: center;
-            justify-content: center; border: 1px solid #fff;
-            text-decoration: none; color: white; font-weight: bold;
-        }
-        .pg-btn.active { background-color: #0000ff; }
-
-        /* Video Grid */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .video-card { background: rgba(0,0,0,0.2); border-radius: 4px; overflow: hidden; }
-
-        .thumb-box {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background-color: #000;
-        }
-
-        .thumb-box img {
+        /* Loading Overlay */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            display: block;
+            background: var(--overlay-bg);
+            display: none; /* Sembunyi secara default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
         }
 
-        .video-content { padding: 12px; }
-        .video-title {
-            font-size: 15px; font-weight: bold; color: #fff;
-            margin-bottom: 6px; height: 36px;
-            overflow: hidden; display: -webkit-box;
-            -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-        }
-        .video-stats {
-            font-size: 12px; color: #ccc;
-            display: flex; justify-content: space-between;
-            margin-bottom: 12px;
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ccc;
+            border-top: 5px solid var(--card-bg);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
-        /* Tombol Download */
-        .btn-download {
-            display: block; width: 100%; background: #333;
-            color: white; text-align: center; padding: 10px;
-            text-decoration: none; border-radius: 4px;
-            font-size: 13px; font-weight: bold; border: 1px solid #444;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        .btn-download:hover { background: #444; }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h2 { margin: 0; font-size: 22px; color: #1a1a1a; letter-spacing: 1px; }
+        p { font-size: 14px; color: #666; margin-top: 5px; }
+
+        /* Grid Layout */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        /* Card Style */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background-color: var(--card-hover);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 140px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-info {
+            padding: 15px 10px;
+            text-align: center;
+            color: var(--text-white);
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 400px) {
+            .container { gap: 10px; }
+            .card-image { height: 120px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="header-ui">
-        <div class="results-info">Video Bokep Viral</div>
-        <div class="badges">
-            <div class="badge badge-std">STANDARD - 8,010</div>
-            <div class="badge badge-gld">GOLD - 495</div>
-        </div>
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <p style="font-weight: bold; color: var(--card-bg);">Memuat Konten...</p>
     </div>
-    <div class="video-grid" id="videoWrapper">
+
+    <header>
+        <h2>KEDEWASAAN ROLE VVIP</h2>
+        <p>Klik daftar di bawah untuk membuka video</p>
+    </header>
+
+    <div class="container" id="main-gallery">
         </div>
 
     <script>
-        // DATA VIDEO: Kamu bisa ganti URL gambar di bawah ini secara manual
-        const videoData = [
-            { id: 1, title: "Asupan Malaysia", img: "https://image2url.com/r2/default/images/1773226120548-13c7f67f-1847-4310-bda6-9f1c08f70a1d.jpg" },
-            { id: 2, title: "Video Viral Terbaru", img: "https://image2url.com/r2/default/images/1773226084594-53e25d9b-44fc-4cdf-bd7d-ba8559deeb41.jpg" },
-            { id: 3, title: "Hijab Terbaru", img: "https://image2url.com/r2/default/images/1773226048902-8e8a6eb3-0777-48f5-a22c-9989303774ff.jpg" }
+        const categories = [
+            { title: "Kumpulan Indo Viral", count: "500 VIDEO", img: "https://image2url.com/r2/default/images/1773290202459-9f63904f-57eb-4ad5-b2a6-d5ec1314fc00.jpg", url: "https://example.com/indo" },
+            { title: "Kumpulan Jepang", count: "300 VIDEO", img: "https://image2url.com/r2/default/images/1773290304127-70353fbc-b3d8-4ab6-9ee5-fa4b5f75626a.jpg", url: "https://example.com/jpn" },
+            { title: "Kumpulan Malaysia", count: "150 VID", img: "https://image2url.com/r2/default/images/1773291278146-43fa87ab-5c5b-420d-a077-71fac15b76ce.jpg", url: "https://example.com/msia" },
+            { title: "Kumpulan Anak Kecil All Negara", count: "Tersedia", img: "https://image2url.com/r2/default/images/1773291300913-401b88b2-a732-4dc9-8f0e-343c0d190b58.jpg", url: "https://example.com/all" },
+            { title: "Kumpulan Selebgram Malay + Indo", count: "Update Harian", img: "https://image2url.com/r2/default/images/1773291319549-11f08df5-c329-43c5-ba56-7130584d968f.jpg", url: "https://example.com/seleb" },
+            { title: "Kumpulan VCS Malay + Indo", count: "Live Recording", img: "https://image2url.com/r2/default/images/1773291338096-9a153422-6a87-4052-a03f-d81458bd1a4f.jpg", url: "https://example.com/vcs" }
         ];
 
-        const wrapper = document.getElementById('videoWrapper');
+        const gallery = document.getElementById('main-gallery');
+        const overlay = document.getElementById('loading-overlay');
 
-        videoData.forEach(item => {
+        categories.forEach(item => {
             const card = document.createElement('div');
-            card.className = 'video-card';
+            card.className = 'card';
             
             card.innerHTML = `
-                <div class="thumb-box">
-                    <img src="${item.img}" alt="${item.title}">
-                </div>
-                <div class="video-content">
-                    <div class="video-title">${item.title}</div>
-                    <div class="video-stats">
-                        <span>${10 + item.id}min - 1080p</span>
-                        <span>${(1 + (item.id/5)).toFixed(1)}M views - 98%</span>
-                    </div>
-                    <a href="${item.img}" download class="btn-download">📥 Download Video</a>
+                <div class="card-image" style="background-image: url('${item.img}')"></div>
+                <div class="card-info">
+                    ${item.title.toUpperCase()}<br>
+                    <span style="font-weight: normal; opacity: 0.9;">(${item.count})</span>
                 </div>
             `;
-            wrapper.appendChild(card);
+
+            // Fungsi klik dengan loading
+            card.onclick = () => {
+                overlay.style.display = 'flex'; // Munculkan loading
+                
+                // Simulasi delay 1 detik sebelum pindah halaman
+                setTimeout(() => {
+                    window.location.href = item.url;
+                }, 1000);
+            };
+            
+            gallery.appendChild(card);
         });
     </script>
-
 </body>
 </html>
